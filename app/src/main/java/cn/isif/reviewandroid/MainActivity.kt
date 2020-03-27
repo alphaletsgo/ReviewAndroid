@@ -14,15 +14,16 @@ import cn.isif.reviewandroid.services.ServiceActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
+    private val items = arrayOf("启动模式","IPC","View","动画","数据库", "服务")
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewManager: RecyclerView.LayoutManager
+
+    //recyclerView列表点击处理
     override fun onItemClick(v: View, position: Int) {
         when (items[position]) {
             "服务" -> ServiceActivity.actionStart(this)
         }
     }
-
-    private val items = arrayOf("数据库", "服务")
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
-    private lateinit var viewManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     private fun setupView() {
         viewManager = LinearLayoutManager(this)
         viewAdapter = MyAdapter(items).apply { this.onItemClickListener = this@MainActivity }
-
         my_recycler_view.apply {
             setHasFixedSize(true)
             layoutManager = viewManager
