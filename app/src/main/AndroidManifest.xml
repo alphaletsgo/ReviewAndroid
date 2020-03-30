@@ -3,16 +3,41 @@
     package="cn.isif.reviewandroid">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ipc.IPCSecondActivity"
+            android:configChanges="screenLayout"
+            android:process="cn.isif.reviewandroid.remote"/>
+        <activity android:name=".ipc.IPCFirstActivity"
+            android:configChanges="screenLayout"
+            android:process=":remote"/>
+        <activity android:name=".ipc.IPCMainActivity" />
+        <activity
+            android:name=".launchmode.SingleTaskActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".launchmode.SingleInstanceActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".launchmode.SingleTopActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".launchmode.StandardActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".launchmode.LaunchModeActivity"
+            android:label="@string/title_activity_launch_mode"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <service
             android:name=".services.SimpleFrontService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity android:name=".services.ServiceActivity" />
         <activity android:name=".MainActivity">

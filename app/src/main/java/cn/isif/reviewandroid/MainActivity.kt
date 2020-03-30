@@ -3,12 +3,15 @@ package cn.isif.reviewandroid
 import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cn.isif.reviewandroid.ipc.IPCMainActivity
+import cn.isif.reviewandroid.launchmode.LaunchModeActivity
 import cn.isif.reviewandroid.services.ServiceActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,6 +25,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     override fun onItemClick(v: View, position: Int) {
         when (items[position]) {
             "服务" -> ServiceActivity.actionStart(this)
+            "启动模式" -> LaunchModeActivity.startActivity(this)
+            "IPC" -> IPCMainActivity.startActivity(this)
         }
     }
 
@@ -40,6 +45,10 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             layoutManager = viewManager
             adapter = viewAdapter
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
     }
 }
 
