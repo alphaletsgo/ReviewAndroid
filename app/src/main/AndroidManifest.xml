@@ -10,12 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ipc.IPCSecondActivity"
+        <activity android:name=".components.viewpager.ViewPagerActivity"></activity>
+        <activity android:name=".components.ComponentsActivity" />
+        <activity
+            android:name=".ipc.IPCSecondActivity"
             android:configChanges="screenLayout"
-            android:process="cn.isif.reviewandroid.remote"/>
-        <activity android:name=".ipc.IPCFirstActivity"
+            android:process="cn.isif.reviewandroid.remote" />
+        <activity
+            android:name=".ipc.IPCFirstActivity"
             android:configChanges="screenLayout"
-            android:process=":remote"/>
+            android:process=":remote" />
         <activity android:name=".ipc.IPCMainActivity" />
         <activity
             android:name=".launchmode.SingleTaskActivity"
