@@ -7,15 +7,14 @@ package cn.isif.aidlservice;
 public interface IManager extends android.os.IInterface
 {
   /** Default implementation for IManager. */
-  public static class Default implements cn.isif.aidlservice.IManager
+  public static class Default implements IManager
   {
-    @Override public int add(int x, int y) throws android.os.RemoteException
+    @Override public java.util.List<cn.isif.aidlservice.Book> getBookList() throws android.os.RemoteException
     {
-      return 0;
+      return null;
     }
-    @Override public int min(int x, int y) throws android.os.RemoteException
+    @Override public void addBook(cn.isif.aidlservice.Book book) throws android.os.RemoteException
     {
-      return 0;
     }
     @Override
     public android.os.IBinder asBinder() {
@@ -23,9 +22,9 @@ public interface IManager extends android.os.IInterface
     }
   }
   /** Local-side IPC implementation stub class. */
-  public static abstract class Stub extends android.os.Binder implements cn.isif.aidlservice.IManager
+  public static abstract class Stub extends android.os.Binder implements IManager
   {
-    private static final java.lang.String DESCRIPTOR = "cn.isif.aidlservice.IManager";
+    private static final String DESCRIPTOR = "cn.isif.aidlservice.IManager";
     /** Construct the stub at attach it to the interface. */
     public Stub()
     {
@@ -35,16 +34,16 @@ public interface IManager extends android.os.IInterface
      * Cast an IBinder object into an cn.isif.aidlservice.IManager interface,
      * generating a proxy if needed.
      */
-    public static cn.isif.aidlservice.IManager asInterface(android.os.IBinder obj)
+    public static IManager asInterface(android.os.IBinder obj)
     {
       if ((obj==null)) {
         return null;
       }
       android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);
-      if (((iin!=null)&&(iin instanceof cn.isif.aidlservice.IManager))) {
-        return ((cn.isif.aidlservice.IManager)iin);
+      if (((iin!=null)&&(iin instanceof IManager))) {
+        return ((IManager)iin);
       }
-      return new cn.isif.aidlservice.IManager.Stub.Proxy(obj);
+      return new Proxy(obj);
     }
     @Override public android.os.IBinder asBinder()
     {
@@ -52,7 +51,7 @@ public interface IManager extends android.os.IInterface
     }
     @Override public boolean onTransact(int code, android.os.Parcel data, android.os.Parcel reply, int flags) throws android.os.RemoteException
     {
-      java.lang.String descriptor = DESCRIPTOR;
+      String descriptor = DESCRIPTOR;
       switch (code)
       {
         case INTERFACE_TRANSACTION:
@@ -60,28 +59,26 @@ public interface IManager extends android.os.IInterface
           reply.writeString(descriptor);
           return true;
         }
-        case TRANSACTION_add:
+        case TRANSACTION_getBookList:
         {
           data.enforceInterface(descriptor);
-          int _arg0;
-          _arg0 = data.readInt();
-          int _arg1;
-          _arg1 = data.readInt();
-          int _result = this.add(_arg0, _arg1);
+          java.util.List<cn.isif.aidlservice.Book> _result = this.getBookList();
           reply.writeNoException();
-          reply.writeInt(_result);
+          reply.writeTypedList(_result);
           return true;
         }
-        case TRANSACTION_min:
+        case TRANSACTION_addBook:
         {
           data.enforceInterface(descriptor);
-          int _arg0;
-          _arg0 = data.readInt();
-          int _arg1;
-          _arg1 = data.readInt();
-          int _result = this.min(_arg0, _arg1);
+          cn.isif.aidlservice.Book _arg0;
+          if ((0!=data.readInt())) {
+            _arg0 = cn.isif.aidlservice.Book.CREATOR.createFromParcel(data);
+          }
+          else {
+            _arg0 = null;
+          }
+          this.addBook(_arg0);
           reply.writeNoException();
-          reply.writeInt(_result);
           return true;
         }
         default:
@@ -90,7 +87,7 @@ public interface IManager extends android.os.IInterface
         }
       }
     }
-    private static class Proxy implements cn.isif.aidlservice.IManager
+    private static class Proxy implements IManager
     {
       private android.os.IBinder mRemote;
       Proxy(android.os.IBinder remote)
@@ -101,25 +98,23 @@ public interface IManager extends android.os.IInterface
       {
         return mRemote;
       }
-      public java.lang.String getInterfaceDescriptor()
+      public String getInterfaceDescriptor()
       {
         return DESCRIPTOR;
       }
-      @Override public int add(int x, int y) throws android.os.RemoteException
+      @Override public java.util.List<cn.isif.aidlservice.Book> getBookList() throws android.os.RemoteException
       {
         android.os.Parcel _data = android.os.Parcel.obtain();
         android.os.Parcel _reply = android.os.Parcel.obtain();
-        int _result;
+        java.util.List<cn.isif.aidlservice.Book> _result;
         try {
           _data.writeInterfaceToken(DESCRIPTOR);
-          _data.writeInt(x);
-          _data.writeInt(y);
-          boolean _status = mRemote.transact(Stub.TRANSACTION_add, _data, _reply, 0);
+          boolean _status = mRemote.transact(Stub.TRANSACTION_getBookList, _data, _reply, 0);
           if (!_status && getDefaultImpl() != null) {
-            return getDefaultImpl().add(x, y);
+            return getDefaultImpl().getBookList();
           }
           _reply.readException();
-          _result = _reply.readInt();
+          _result = _reply.createTypedArrayList(cn.isif.aidlservice.Book.CREATOR);
         }
         finally {
           _reply.recycle();
@@ -127,43 +122,46 @@ public interface IManager extends android.os.IInterface
         }
         return _result;
       }
-      @Override public int min(int x, int y) throws android.os.RemoteException
+      @Override public void addBook(cn.isif.aidlservice.Book book) throws android.os.RemoteException
       {
         android.os.Parcel _data = android.os.Parcel.obtain();
         android.os.Parcel _reply = android.os.Parcel.obtain();
-        int _result;
         try {
           _data.writeInterfaceToken(DESCRIPTOR);
-          _data.writeInt(x);
-          _data.writeInt(y);
-          boolean _status = mRemote.transact(Stub.TRANSACTION_min, _data, _reply, 0);
+          if ((book!=null)) {
+            _data.writeInt(1);
+            book.writeToParcel(_data, 0);
+          }
+          else {
+            _data.writeInt(0);
+          }
+          boolean _status = mRemote.transact(Stub.TRANSACTION_addBook, _data, _reply, 0);
           if (!_status && getDefaultImpl() != null) {
-            return getDefaultImpl().min(x, y);
+            getDefaultImpl().addBook(book);
+            return;
           }
           _reply.readException();
-          _result = _reply.readInt();
         }
         finally {
           _reply.recycle();
           _data.recycle();
         }
-        return _result;
       }
-      public static cn.isif.aidlservice.IManager sDefaultImpl;
+      public static IManager sDefaultImpl;
     }
-    static final int TRANSACTION_add = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
-    static final int TRANSACTION_min = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
-    public static boolean setDefaultImpl(cn.isif.aidlservice.IManager impl) {
-      if (Stub.Proxy.sDefaultImpl == null && impl != null) {
-        Stub.Proxy.sDefaultImpl = impl;
+    static final int TRANSACTION_getBookList = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
+    static final int TRANSACTION_addBook = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
+    public static boolean setDefaultImpl(IManager impl) {
+      if (Proxy.sDefaultImpl == null && impl != null) {
+        Proxy.sDefaultImpl = impl;
         return true;
       }
       return false;
     }
-    public static cn.isif.aidlservice.IManager getDefaultImpl() {
-      return Stub.Proxy.sDefaultImpl;
+    public static IManager getDefaultImpl() {
+      return Proxy.sDefaultImpl;
     }
   }
-  public int add(int x, int y) throws android.os.RemoteException;
-  public int min(int x, int y) throws android.os.RemoteException;
+  public java.util.List<cn.isif.aidlservice.Book> getBookList() throws android.os.RemoteException;
+  public void addBook(cn.isif.aidlservice.Book book) throws android.os.RemoteException;
 }

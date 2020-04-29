@@ -7,6 +7,7 @@ import android.os.IBinder
 import android.util.Log
 
 class AIDLService : Service() {
+    var books = mutableListOf<Book>()
 
     override fun onCreate() {
         super.onCreate()
@@ -45,13 +46,14 @@ class AIDLService : Service() {
     }
 
     private val mBinder = object:IManager.Stub(){
-        override fun add(x: Int, y: Int): Int {
-            return x + y
+        override fun addBook(book: Book?) {
+            if (book != null) {
+                books.add(book)
+            }
         }
 
-        override fun min(x: Int, y: Int): Int {
-            return if (x>y) y else x
+        override fun getBookList(): MutableList<Book> {
+            return books
         }
-
     }
 }

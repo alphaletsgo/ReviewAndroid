@@ -11,6 +11,8 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
+import cn.isif.aidlservice.Book
 import cn.isif.aidlservice.IManager
 
 class MainActivity : AppCompatActivity() {
@@ -50,11 +52,13 @@ class MainActivity : AppCompatActivity() {
             unbindService(sc)
         }
         btAdd.setOnClickListener {
-            Log.d(TAG, "The ADD invoked result is: ${im.add(3, 4)}")
+            var book = Book(1,"Android");
+            im.addBook(book)
         }
 
         btMin.setOnClickListener {
-            Log.d(TAG, "The MIN invoked result is: ${im.min(3, 4)}")
+            var books = im.bookList
+            Toast.makeText(this,"${books[0].bookName}",Toast.LENGTH_SHORT).show();
         }
 
     }
