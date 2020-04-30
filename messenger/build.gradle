@@ -7,7 +7,7 @@ android {
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "cn.isif.messengerservice"
+        applicationId "cn.isif.messenger"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1

@@ -1,4 +1,4 @@
-package cn.isif.messengerservice
+package cn.isif.messenger
 
 class MyConstants {
     companion object{

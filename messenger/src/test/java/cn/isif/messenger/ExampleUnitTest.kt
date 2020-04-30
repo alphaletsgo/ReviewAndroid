@@ -1,4 +1,4 @@
-package cn.isif.messengerservice
+package cn.isif.messenger
 
 import org.junit.Test
 

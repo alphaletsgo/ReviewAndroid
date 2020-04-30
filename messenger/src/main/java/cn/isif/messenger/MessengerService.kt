@@ -1,4 +1,4 @@
-package cn.isif.messengerservice
+package cn.isif.messenger
 
 import android.app.Activity
 import android.app.Service

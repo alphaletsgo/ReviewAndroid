@@ -14,7 +14,7 @@
             <option value="$PROJECT_DIR$/aidlclient" />
             <option value="$PROJECT_DIR$/aidlservice" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/messengerservice" />
+            <option value="$PROJECT_DIR$/messenger" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
