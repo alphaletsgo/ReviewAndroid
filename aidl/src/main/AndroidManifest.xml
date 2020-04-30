@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.isif.aidlservice">
-
-<!--    <permission android:name="cn.isif.aidlservice.permission.TEST" android:protectionLevel="normal" />-->
-<!--    <uses-permission android:name="cn.isif.aidlservice.permission.TEST" />-->
+    package="cn.isif.aidl">
 
     <application
         android:allowBackup="true"
@@ -12,12 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name=".AIDLService">
-            <intent-filter>
-                <action android:name="cn.isif.aidlservice.AIDLSERVICE" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </service>
+        <service
+            android:name=".BookManagerService"
+            android:enabled="true"
+            android:process=":remote"
+            android:exported="true"></service>
 
         <activity android:name=".MainActivity">
             <intent-filter>

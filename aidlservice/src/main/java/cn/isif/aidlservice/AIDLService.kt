@@ -3,6 +3,7 @@ package cn.isif.aidlservice
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.IBinder
 import android.util.Log
 import java.util.concurrent.CopyOnWriteArrayList
@@ -12,8 +13,14 @@ class AIDLService : Service() {
     //    var books = mutableListOf<Book>() //不支持并发
     var books = CopyOnWriteArrayList<Book>()//支持并发,aidl本身是不支持copyonwritearraylist，在传输中转为arraylist
 
-    override fun onBind(intent: Intent): IBinder {
-        Log.d(TAG, "onBind")
+    override fun onBind(intent: Intent): IBinder? {
+//        Log.d(TAG, "onBind")
+//        //权限验证
+//        var check = checkCallingPermission("cn.isif.aidlservice.permission.TEST")
+//        if (check==PackageManager.PERMISSION_DENIED){//权限拒绝
+//            Log.d(TAG,"Permission denied!!!")
+//            return null
+//        }
         return mBinder
     }
 
