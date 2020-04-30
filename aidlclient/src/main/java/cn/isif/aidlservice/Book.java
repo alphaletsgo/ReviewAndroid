@@ -3,17 +3,22 @@ package cn.isif.aidlservice;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Book implements Parcelable {
-    public int bookId;
-    public String bookName;
+import androidx.annotation.NonNull;
 
-    public Book(int bookId, String bookName) {
-        this.bookId = bookId;
+/**
+ * 要想在Binder中传输对象，该对象必须实现Parcelable
+ */
+public class Book implements Parcelable {
+    public String bookName;
+    public double price;
+
+    public Book(double price, String bookName) {
+        this.price = price;
         this.bookName = bookName;
     }
 
     protected Book(Parcel in) {
-        bookId = in.readInt();
+        price = in.readDouble();
         bookName = in.readString();
     }
 
@@ -29,6 +34,10 @@ public class Book implements Parcelable {
         }
     };
 
+    public Book() {
+
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -36,7 +45,18 @@ public class Book implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(bookId);
+        dest.writeDouble(price);
         dest.writeString(bookName);
+    }
+
+    public void readFromParcel(Parcel reply) {
+        price = reply.readDouble();
+        bookName = reply.readString();
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "[name: " + bookName + ", price: " + price + "]";
     }
 }
