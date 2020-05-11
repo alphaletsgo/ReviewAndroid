@@ -12,6 +12,9 @@ import android.util.Log
 import android.widget.Button
 import java.util.*
 
+/**
+ * 使用aidl实现订阅式通讯
+ */
 class MainActivity : AppCompatActivity() {
     lateinit var btBind: Button
     lateinit var btUnbind: Button

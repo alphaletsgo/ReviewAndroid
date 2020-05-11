@@ -10,7 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".components.viewpager.ViewPagerActivity"></activity>
+        <activity android:name=".views.EventActivity"></activity>
+        <activity android:name=".provider.ProviderActivity" />
+
+        <provider
+            android:name=".provider.BookProvider"
+            android:authorities="cn.isif.reviewandroid.book.provider"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":provider" />
+
+        <activity android:name=".components.viewpager.ViewPagerActivity" />
         <activity android:name=".components.ComponentsActivity" />
         <activity
             android:name=".ipc.IPCSecondActivity"

@@ -11,14 +11,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cn.isif.reviewandroid.components.ComponentsActivity
+import cn.isif.reviewandroid.provider.ProviderActivity
 import cn.isif.reviewandroid.ipc.IPCMainActivity
 import cn.isif.reviewandroid.launchmode.LaunchModeActivity
 import cn.isif.reviewandroid.services.ServiceActivity
+import cn.isif.reviewandroid.views.EventActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
-    private val items = arrayOf("启动模式","IPC","View","动画","数据库", "服务","组件")
+    private val items = arrayOf("启动模式","IPC","View","动画","数据库", "服务","组件","ContentProvider","Event")
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
@@ -29,6 +31,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             "启动模式" -> LaunchModeActivity.startActivity(this)
             "IPC" -> IPCMainActivity.startActivity(this)
             "组件" -> ComponentsActivity.startAction(this)
+            "ContentProvider" -> ProviderActivity.startActivity(this)
+            "Event" -> EventActivity.startActivity(this)
         }
     }
 
