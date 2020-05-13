@@ -25,6 +25,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <cn.isif.reviewandroid.views.MyTextView
+            android:text="Custom TextView"
+            android:layout_below="@id/bt_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

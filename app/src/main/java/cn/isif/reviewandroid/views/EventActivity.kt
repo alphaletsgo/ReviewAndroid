@@ -48,6 +48,10 @@ class EventActivity : AppCompatActivity() {
         false
     }
 
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        return super.dispatchTouchEvent(ev)
+    }
+
     companion object {
         final val TAG = "EventActivity"
         fun startActivity(activity: Activity) {
