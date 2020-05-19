@@ -1,12 +1,12 @@
 package cn.isif.rxdemo.java;
 
-import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Flowable;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.ObservableEmitter;
-import io.reactivex.rxjava3.core.ObservableOnSubscribe;
-import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.disposables.Disposable;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
 
 public class HelloWorld {
     public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class HelloWorld {
         Observable observable = Observable.create(new ObservableOnSubscribe<String>() {
 
             @Override
-            public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Throwable {
+            public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
                 emitter.onNext("hallo world");
                 emitter.onComplete();
 //                throw new Exception("");  //测试主动抛出异常，会回调onError方法

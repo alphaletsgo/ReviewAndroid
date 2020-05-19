@@ -1,12 +1,13 @@
 package cn.isif.rxdemo.java;
 
-import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.ObservableEmitter;
-import io.reactivex.rxjava3.core.ObservableOnSubscribe;
-import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.functions.Consumer;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 public class FirstMet {
     public static void main(String[] args) {
@@ -27,7 +28,7 @@ public class FirstMet {
     private static  void observableEmitter(){
         Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Throwable {
+            public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Exception {
                 emitter.onNext(1);
                 emitter.onNext(2);
                 emitter.onNext(3);
@@ -63,7 +64,7 @@ public class FirstMet {
     private static void dispose(){
         Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Throwable {
+            public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Exception {
                 System.out.println("emit 1");
                 emitter.onNext(1);
                 System.out.println("emit 2");
@@ -117,7 +118,7 @@ public class FirstMet {
     private static void consumer(){
         Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Throwable {
+            public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Exception {
                 System.out.println("emit 1");
                 emitter.onNext(1);
                 System.out.println("emit 2");
@@ -131,7 +132,7 @@ public class FirstMet {
             }
         }).subscribe(new Consumer<Integer>() {
             @Override
-            public void accept(Integer integer) throws Throwable {
+            public void accept(Integer integer) throws Exception {
                 System.out.println("onNext: " + integer);
             }
         });
