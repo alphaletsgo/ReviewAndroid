@@ -1,5 +1,6 @@
 package cn.isif.reviewandroid
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
@@ -12,16 +13,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cn.isif.reviewandroid.components.ComponentsActivity
 import cn.isif.reviewandroid.glide.GlideActivity
+import cn.isif.reviewandroid.hook.HookActivity
 import cn.isif.reviewandroid.provider.ProviderActivity
 import cn.isif.reviewandroid.ipc.IPCMainActivity
 import cn.isif.reviewandroid.launchmode.LaunchModeActivity
+import cn.isif.reviewandroid.permission.PermissionActivity
 import cn.isif.reviewandroid.services.ServiceActivity
 import cn.isif.reviewandroid.views.EventActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
-    private val items = arrayOf("启动模式","IPC","View","动画","数据库", "服务","组件","ContentProvider","Event","Glide")
+    private val items = arrayOf("启动模式","IPC","View","动画","数据库", "服务","组件","ContentProvider","Event","Glide","Hook","Permission")
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
@@ -35,6 +38,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             "ContentProvider" -> ProviderActivity.startActivity(this)
             "Event" -> EventActivity.startActivity(this)
             "Glide" -> GlideActivity.startActivity(this)
+            "Hook" -> startActivity(Intent(this,HookActivity::class.java))
+            "Permission" -> PermissionActivity.startActivity(this)
         }
     }
 
