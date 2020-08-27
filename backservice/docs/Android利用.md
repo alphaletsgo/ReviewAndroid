@@ -1451,3 +1451,15 @@ String cmd = String.format("input tap %d %d", r.centerX(), r.centerY());
 ```java
 ShellUtils.CommandResult commandResult = ShellUtils.execCmd(cmd, true);
 ```
+
+
+
+
+
+# 整理
+
+https://juejin.im/post/6844903764604747784
+
+https://juejin.im/post/6844903764613136397
+
+https://www.itdaan.com/blog/2017/10/13/c80a17f4752b5dcdd292c0a26c5d62ef.html
