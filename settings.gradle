@@ -1,3 +1,5 @@
+include ':backservice'
+include ':video'
 include ':app'
 rootProject.name='ReviewAndroid'
 include ':aidlservice'

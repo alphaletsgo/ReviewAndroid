@@ -15,8 +15,10 @@
             <option value="$PROJECT_DIR$/aidlclient" />
             <option value="$PROJECT_DIR$/aidlservice" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/backservice" />
             <option value="$PROJECT_DIR$/messenger" />
             <option value="$PROJECT_DIR$/rxdemo" />
+            <option value="$PROJECT_DIR$/video" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

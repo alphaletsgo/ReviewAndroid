@@ -3,16 +3,12 @@ package cn.isif.reviewandroid.hook;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -21,8 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 import cn.isif.reviewandroid.R;
 import cn.isif.reviewandroid.TestActivity;
@@ -45,7 +39,7 @@ public class HookActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HookActivity.this,TestActivity.class));
+                startActivity(new Intent(HookActivity.this, TestActivity.class));
             }
         });
     }
