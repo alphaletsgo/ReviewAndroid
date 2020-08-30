@@ -16,32 +16,38 @@ public class MonitorService extends AccessibilityService {
     public final String TAG = "MonitorService";
 
 
-
     @Override
     protected void onServiceConnected() {
-        Log.d(TAG,"onServiceConnected");
+        Log.d(TAG, "onServiceConnected");
         super.onServiceConnected();
     }
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        Log.d(TAG, "onAccessibilityEvent: " + accessibilityEvent.toString());
-        if (!TextUtils.isEmpty(accessibilityEvent.getPackageName())){
-            Log.d(TAG + "-" + "packageName",accessibilityEvent.getPackageName().toString());
+        switch (accessibilityEvent.getAction()) {
+            case AccessibilityEvent.TYPE_VIEW_CLICKED:
+            case AccessibilityEvent.TYPE_VIEW_LONG_CLICKED:
+                Log.d(TAG, "CLICK EVENT");
+                break;
+            default:
+                Log.d(TAG,"" + accessibilityEvent.getAction());
+                break;
         }
-        if (!TextUtils.isEmpty(accessibilityEvent.getClassName())){
-            Log.d(TAG + "-" + "className",accessibilityEvent.getClassName().toString());
-        }
-        AccessibilityNodeInfo rootNode = getRootInActiveWindow();
-        if (null != rootNode){
-
-        }
-        List<CharSequence> textTree = accessibilityEvent.getText();
-        for (CharSequence cs:textTree){
-            Log.d(TAG,cs.toString());
-        }
-
-
+//        Log.d(TAG, "onAccessibilityEvent: " + accessibilityEvent.toString());
+//        if (!TextUtils.isEmpty(accessibilityEvent.getPackageName())) {
+//            Log.d(TAG + "-" + "packageName", accessibilityEvent.getPackageName().toString());
+//        }
+//        if (!TextUtils.isEmpty(accessibilityEvent.getClassName())) {
+//            Log.d(TAG + "-" + "className", accessibilityEvent.getClassName().toString());
+//        }
+//        AccessibilityNodeInfo rootNode = getRootInActiveWindow();
+//        if (null != rootNode) {
+//
+//        }
+//        List<CharSequence> textTree = accessibilityEvent.getText();
+//        for (CharSequence cs : textTree) {
+//            Log.d(TAG, cs.toString());
+//        }
     }
 
     @Override
