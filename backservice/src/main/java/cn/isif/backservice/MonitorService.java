@@ -1,8 +1,12 @@
 package cn.isif.backservice;
 
 import android.accessibilityservice.AccessibilityService;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+
+import java.util.List;
 
 /**
  * AccessibilityService 原本是用来帮助有障碍的人更好的使用手机
@@ -22,8 +26,22 @@ public class MonitorService extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
         Log.d(TAG, "onAccessibilityEvent: " + accessibilityEvent.toString());
-        Log.d(TAG,accessibilityEvent.getPackageName().toString());
-        Log.d(TAG,accessibilityEvent.getClassName().toString());
+        if (!TextUtils.isEmpty(accessibilityEvent.getPackageName())){
+            Log.d(TAG + "-" + "packageName",accessibilityEvent.getPackageName().toString());
+        }
+        if (!TextUtils.isEmpty(accessibilityEvent.getClassName())){
+            Log.d(TAG + "-" + "className",accessibilityEvent.getClassName().toString());
+        }
+        AccessibilityNodeInfo rootNode = getRootInActiveWindow();
+        if (null != rootNode){
+
+        }
+        List<CharSequence> textTree = accessibilityEvent.getText();
+        for (CharSequence cs:textTree){
+            Log.d(TAG,cs.toString());
+        }
+
+
     }
 
     @Override
