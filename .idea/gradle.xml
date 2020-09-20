@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/backservice" />
             <option value="$PROJECT_DIR$/messenger" />
             <option value="$PROJECT_DIR$/rxdemo" />
+            <option value="$PROJECT_DIR$/unittest" />
             <option value="$PROJECT_DIR$/video" />
           </set>
         </option>
