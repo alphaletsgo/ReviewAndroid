@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/rxdemo" />
             <option value="$PROJECT_DIR$/unittest" />
             <option value="$PROJECT_DIR$/video" />
+            <option value="$PROJECT_DIR$/webdemo" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

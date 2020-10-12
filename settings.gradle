@@ -1,3 +1,4 @@
+include ':webdemo'
 include ':unittest'
 include ':backservice'
 include ':video'
