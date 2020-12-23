@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         mWebView.setWebViewClient(new WebViewClient(){
             @Override
             public void onReceivedSslError(WebView view, final SslErrorHandler handler, SslError error) {
+                //处理不被支持的证书
                 final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 String message = "SSL Certificate error.";
                 switch (error.getPrimaryError()) {

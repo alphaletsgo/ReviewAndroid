@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import cn.isif.reviewandroid.R
+import cn.isif.utils.io
+import cn.isif.utils.ui
 
 /**
  * 这里演示Viewpager使用方法和FragmentPagerAdapter与FragmentStatePagerAdapter的区别
@@ -33,16 +35,31 @@ class ViewPagerActivity : AppCompatActivity() {
 //                return arrayStr.size
 //            }
 //        }
-        //使用FragmentPagerAdapter
-        vp.adapter = object : FragmentPagerAdapter(supportFragmentManager, FragmentPagerAdapter . BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
-            override fun getItem(position: Int): Fragment {
-                return FragmentTest.newInstance("ViewPager",arrayStr[position])
-            }
+        //异步加载
+        io {
+            Thread.sleep(10_000)
+            ui {
+                vp.adapter = object : FragmentPagerAdapter(supportFragmentManager, FragmentPagerAdapter . BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+                    override fun getItem(position: Int): Fragment {
+                        return FragmentTest.newInstance("ViewPager",arrayStr[position])
+                    }
 
-            override fun getCount(): Int {
-                return arrayStr.size
+                    override fun getCount(): Int {
+                        return arrayStr.size
+                    }
+                }
             }
         }
+        //使用FragmentPagerAdapter
+//        vp.adapter = object : FragmentPagerAdapter(supportFragmentManager, FragmentPagerAdapter . BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+//            override fun getItem(position: Int): Fragment {
+//                return FragmentTest.newInstance("ViewPager",arrayStr[position])
+//            }
+//
+//            override fun getCount(): Int {
+//                return arrayStr.size
+//            }
+//        }
         /**
          * 这里总结一下FragmentStatePagerAdapter与FragmentPagerAdapter的区别
          *  1）FragmentPagerAdapter 不会移除fragment
