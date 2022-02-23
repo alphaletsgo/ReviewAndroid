@@ -20,11 +20,12 @@ import cn.isif.reviewandroid.launchmode.LaunchModeActivity
 import cn.isif.reviewandroid.permission.PermissionActivity
 import cn.isif.reviewandroid.services.ServiceActivity
 import cn.isif.reviewandroid.views.EventActivity
+import cn.isif.reviewandroid.web.WebActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
-    private val items = arrayOf("启动模式","IPC","View","动画","数据库", "服务","组件","ContentProvider","Event","Glide","Hook","Permission")
+    private val items = arrayOf("启动模式","IPC","View","动画","数据库", "服务","组件","ContentProvider","Event","Glide","Hook","Permission","Web")
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             "Glide" -> GlideActivity.startActivity(this)
             "Hook" -> startActivity(Intent(this,HookActivity::class.java))
             "Permission" -> PermissionActivity.startActivity(this)
+            "Web" -> WebActivity.startActivtiy(this)
         }
     }
 

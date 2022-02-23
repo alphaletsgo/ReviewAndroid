@@ -5,23 +5,14 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="delegatedBuild" value="false" />
-        <option name="testRunner" value="PLATFORM" />
+        <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/aidl" />
-            <option value="$PROJECT_DIR$/aidlclient" />
-            <option value="$PROJECT_DIR$/aidlservice" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/backservice" />
-            <option value="$PROJECT_DIR$/messenger" />
-            <option value="$PROJECT_DIR$/rxdemo" />
-            <option value="$PROJECT_DIR$/unittest" />
             <option value="$PROJECT_DIR$/utils" />
-            <option value="$PROJECT_DIR$/video" />
-            <option value="$PROJECT_DIR$/webdemo" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -64,6 +64,7 @@
 
         <activity android:name=".services.ServiceActivity" />
         <activity android:name=".hook.HookActivity" />
+        <activity android:name=".web.WebActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

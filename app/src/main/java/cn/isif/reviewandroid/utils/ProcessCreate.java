@@ -9,6 +9,9 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
 
+/**
+ * 进程工具类
+ */
 public class ProcessCreate {
     //使用ProcessBuilder创建进程
     public static void createByProcessBuilder() throws IOException {
