@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cn.isif.reviewandroid.components.ComponentsActivity
@@ -17,6 +19,7 @@ import cn.isif.reviewandroid.hook.HookActivity
 import cn.isif.reviewandroid.provider.ProviderActivity
 import cn.isif.reviewandroid.ipc.IPCMainActivity
 import cn.isif.reviewandroid.launchmode.LaunchModeActivity
+import cn.isif.reviewandroid.notification.NotifyActivity
 import cn.isif.reviewandroid.permission.PermissionActivity
 import cn.isif.reviewandroid.services.ServiceActivity
 import cn.isif.reviewandroid.views.EventActivity
@@ -25,7 +28,7 @@ import cn.isif.reviewandroid.web.WebActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
-    private val items = arrayOf("启动模式","IPC","View","动画","数据库", "服务","组件","ContentProvider","Event","Glide","Hook","Permission","Web")
+    private val items = arrayOf("启动模式","IPC","View","动画","数据库", "服务","组件","ContentProvider","Event","Glide","Hook","Permission","Web","通知")
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
@@ -42,6 +45,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             "Hook" -> startActivity(Intent(this,HookActivity::class.java))
             "Permission" -> PermissionActivity.startActivity(this)
             "Web" -> WebActivity.startActivtiy(this)
+            "通知" -> NotifyActivity.startActivity(this)
         }
     }
 
@@ -53,7 +57,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun setupView() {
-        viewManager = LinearLayoutManager(this)
+//        viewManager = LinearLayoutManager(this)
+        viewManager = GridLayoutManager(this,4)
         viewAdapter = MyAdapter(items).apply { this.onItemClickListener = this@MainActivity }
         my_recycler_view.apply {
             setHasFixedSize(true)

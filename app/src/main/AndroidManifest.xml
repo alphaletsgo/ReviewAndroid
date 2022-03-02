@@ -5,8 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".MyApplication"
@@ -16,7 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".permission.PermissionActivity"></activity>
+        <activity
+            android:name=".notification.NotifyActivity"
+            android:exported="false" />
+        <activity android:name=".permission.PermissionActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".glide.GlideActivity" />
         <activity android:name=".views.EventActivity" />
