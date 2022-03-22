@@ -6,6 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.EventActivity">
+
+    <cn.isif.reviewandroid.views.TagsView
+        android:id="@+id/tags"
+        android:layout_width="match_parent"
+        android:layout_height="405dp"
+        app:layout_constraintBottom_toBottomOf="@+id/parent"
+        app:layout_constraintTop_toTopOf="@+id/parent"/>
+
     <RelativeLayout
         android:id="@+id/parent"
         android:gravity="center_horizontal"

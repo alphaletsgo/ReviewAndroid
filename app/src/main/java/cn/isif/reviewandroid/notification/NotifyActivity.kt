@@ -16,6 +16,8 @@ import cn.isif.reviewandroid.TestActivity
 import kotlinx.android.synthetic.main.activity_notify.*
 
 class NotifyActivity : AppCompatActivity() {
+    private val mNotifyBroadcastReceiver = NotifyBroadcastReceiver()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notify)
@@ -25,21 +27,30 @@ class NotifyActivity : AppCompatActivity() {
         bt_style_notify.setOnClickListener {
             styleNotify()
         }
+        mNotifyBroadcastReceiver.registerReceiver(this)
     }
 
     private fun styleNotify() {
+        //使用广播或者服务处理通知点击不会收起通知栏，需要利用反射实现
+        val broadcastPendingIntent = PendingIntent.getBroadcast(
+            this,
+            0,
+            NotifyBroadcastReceiver.getBroadcastIntent(),
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
         val fullScreenIntent = Intent(this, TestActivity::class.java)
-        val fullScreenPendingIntent = PendingIntent.getActivity(this, 0, fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val fullScreenPendingIntent =
+            PendingIntent.getActivity(this, 0, fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val action1 = NotificationCompat.Action.Builder(
             R.drawable.ic_person_black,
-            "button1",
-            fullScreenPendingIntent
+            "广播打开",
+            broadcastPendingIntent
         ).build()
 
         val action2 = NotificationCompat.Action.Builder(
             R.drawable.ic_person_black,
-            "button2",
+            "直接打开",
             fullScreenPendingIntent
         ).build()
 
@@ -63,7 +74,8 @@ class NotifyActivity : AppCompatActivity() {
 
     private fun simpleNotify(notifyTitle: String, notifyContextText: String) {
         val fullScreenIntent = Intent(this, TestActivity::class.java)
-        val fullScreenPendingIntent = PendingIntent.getActivity(this, 0, fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val fullScreenPendingIntent =
+            PendingIntent.getActivity(this, 0, fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         var builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_launcher_foreground) //设置icon
@@ -97,6 +109,11 @@ class NotifyActivity : AppCompatActivity() {
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
+    }
+
+    override fun onDestroy() {
+        mNotifyBroadcastReceiver.unRegisterReceiver(this)
+        super.onDestroy()
     }
 
     companion object {

@@ -11,12 +11,14 @@ import android.widget.Button
 import android.widget.RelativeLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import cn.isif.reviewandroid.R
+import kotlinx.android.synthetic.main.activity_event.*
 
 class EventActivity : AppCompatActivity() {
     lateinit var root: ConstraintLayout
     lateinit var parent: RelativeLayout
     lateinit var bt1: Button
     lateinit var bt2: Button
+    var tagArray = listOf<String>("aa","bb","cc","dd","ee","ff","gg","hh")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +43,7 @@ class EventActivity : AppCompatActivity() {
             tag = "Button2"
             setOnTouchListener(touchListenerObj)
         }
+        tags.setTags(tagArray)
     }
 
     val touchListenerObj = View.OnTouchListener { v, event ->
