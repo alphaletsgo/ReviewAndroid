@@ -1,9 +1,11 @@
 package cn.isif.reviewandroid.views
 
+import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -44,15 +46,17 @@ class EventActivity : AppCompatActivity() {
             setOnTouchListener(touchListenerObj)
         }
         tags.setTags(tagArray)
+        ObjectAnimator.ofInt(bt1, "width", 500).setDuration(5000).start()
     }
 
-    val touchListenerObj = View.OnTouchListener { v, event ->
+    private val touchListenerObj = View.OnTouchListener { v, event ->
         Log.d(TAG, "${v.tag} ---- onTouch ---- ${event?.action}")
         false
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         return super.dispatchTouchEvent(ev)
+//        Handler
     }
 
     companion object {

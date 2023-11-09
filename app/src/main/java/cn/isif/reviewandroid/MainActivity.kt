@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,8 +28,34 @@ import cn.isif.reviewandroid.web.WebActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * 旋转屏幕时activity的生命周期：
+ * onPause
+ * onStop
+ * onSaveInstanceState
+ * onDestroy
+ * onCreate
+ * onStart
+ * onRestoreInstanceState
+ * onResume
+ */
 class MainActivity : AppCompatActivity(), OnItemClickListener {
-    private val items = arrayOf("启动模式","IPC","View","动画","数据库", "服务","组件","ContentProvider","Event","Glide","Hook","Permission","Web","通知")
+    private val items = arrayOf(
+        "启动模式",
+        "IPC",
+        "View",
+        "动画",
+        "数据库",
+        "服务",
+        "组件",
+        "ContentProvider",
+        "Event",
+        "Glide",
+        "Hook",
+        "Permission",
+        "Web",
+        "通知"
+    )
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
@@ -42,7 +69,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             "ContentProvider" -> ProviderActivity.startActivity(this)
             "Event" -> EventActivity.startActivity(this)
             "Glide" -> GlideActivity.startActivity(this)
-            "Hook" -> startActivity(Intent(this,HookActivity::class.java))
+            "Hook" -> startActivity(Intent(this, HookActivity::class.java))
             "Permission" -> PermissionActivity.startActivity(this)
             "Web" -> WebActivity.startActivtiy(this)
             "通知" -> NotifyActivity.startActivity(this)
@@ -52,13 +79,13 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        Log.d(TAG, "onCreate")
         setupView()
     }
 
     private fun setupView() {
 //        viewManager = LinearLayoutManager(this)
-        viewManager = GridLayoutManager(this,4)
+        viewManager = GridLayoutManager(this, 4)
         viewAdapter = MyAdapter(items).apply { this.onItemClickListener = this@MainActivity }
         my_recycler_view.apply {
             setHasFixedSize(true)
@@ -67,8 +94,43 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-        super.onSaveInstanceState(outState, outPersistentState)
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        Log.d(TAG, "onRestoreInstanceState")
+        super.onRestoreInstanceState(savedInstanceState)
+    }
+
+    override fun onStart() {
+        Log.d(TAG, "onStart")
+        super.onStart()
+    }
+
+    override fun onResume() {
+        Log.d(TAG, "onResume")
+        super.onResume()
+    }
+
+    override fun onPause() {
+        Log.d(TAG, "onPause")
+        super.onPause()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        Log.d(TAG, "onSaveInstanceState")
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onStop() {
+        Log.d(TAG, "onStop")
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        Log.d(TAG, "onDestroy")
+        super.onDestroy()
+    }
+
+    companion object {
+        const val TAG = "MainActivity"
     }
 }
 
