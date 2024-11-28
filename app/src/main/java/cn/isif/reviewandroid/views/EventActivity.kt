@@ -13,7 +13,6 @@ import android.widget.Button
 import android.widget.RelativeLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import cn.isif.reviewandroid.R
-import kotlinx.android.synthetic.main.activity_event.*
 
 class EventActivity : AppCompatActivity() {
     lateinit var root: ConstraintLayout
@@ -45,7 +44,7 @@ class EventActivity : AppCompatActivity() {
             tag = "Button2"
             setOnTouchListener(touchListenerObj)
         }
-        tags.setTags(tagArray)
+        findViewById<TagsView>(R.id.tags).setTags(tagArray)
         ObjectAnimator.ofInt(bt1, "width", 500).setDuration(5000).start()
     }
 

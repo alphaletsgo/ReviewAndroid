@@ -34,7 +34,7 @@ class TagsView @JvmOverloads constructor(
         }
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         canvas?.let { ca ->
             tagsList?.forEach {
                 val fm = mTextPaint.fontMetrics

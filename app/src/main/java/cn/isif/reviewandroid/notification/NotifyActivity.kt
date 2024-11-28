@@ -1,19 +1,22 @@
 package cn.isif.reviewandroid.notification
 
+import android.Manifest
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import cn.isif.reviewandroid.R
 import cn.isif.reviewandroid.TestActivity
-import kotlinx.android.synthetic.main.activity_notify.*
 
 class NotifyActivity : AppCompatActivity() {
     private val mNotifyBroadcastReceiver = NotifyBroadcastReceiver()
@@ -21,10 +24,10 @@ class NotifyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notify)
-        bt_simple_notify.setOnClickListener {
+        findViewById<Button>(R.id.bt_simple_notify).setOnClickListener {
             simpleNotify("®simple notify title", "simple notify content")
         }
-        bt_style_notify.setOnClickListener {
+        findViewById<Button>(R.id.bt_style_notify).setOnClickListener {
             styleNotify()
         }
         mNotifyBroadcastReceiver.registerReceiver(this)
@@ -68,6 +71,13 @@ class NotifyActivity : AppCompatActivity() {
             .addAction(action2)
 
         with(NotificationManagerCompat.from(this)) {
+            if (ActivityCompat.checkSelfPermission(
+                    this@NotifyActivity,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
             notify(SIMPLE_NOTIFY_ID, builder.build())
         }
     }
@@ -89,6 +99,13 @@ class NotifyActivity : AppCompatActivity() {
         createNotificationChannel()
 
         with(NotificationManagerCompat.from(this)) {
+            if (ActivityCompat.checkSelfPermission(
+                    this@NotifyActivity,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
             notify(SIMPLE_NOTIFY_ID, builder.build())
         }
     }

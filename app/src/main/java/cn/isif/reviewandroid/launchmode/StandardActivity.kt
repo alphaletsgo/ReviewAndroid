@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.TextView
 import cn.isif.reviewandroid.R
@@ -25,16 +24,6 @@ class StandardActivity : AppCompatActivity() {
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         Log.d(TAG,"onRestoreInstanceState")
         super.onRestoreInstanceState(savedInstanceState)
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        Log.d(TAG,"onNewIntent")
-        super.onNewIntent(intent)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        Log.d(TAG,"onSaveInstanceState")
-        super.onSaveInstanceState(outState)
     }
 
     override fun onRestart() {

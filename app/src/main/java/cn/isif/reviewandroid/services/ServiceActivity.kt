@@ -9,42 +9,46 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
 import cn.isif.reviewandroid.R
-import kotlinx.android.synthetic.main.activity_service.*
+import cn.isif.reviewandroid.databinding.ActivityServiceBinding
 
-class ServiceActivity : AppCompatActivity(),ServiceConnection {
-    lateinit var myBind: SimpleBindService.MyBind
+class ServiceActivity : AppCompatActivity(), ServiceConnection {
+    private lateinit var myBind: SimpleBindService.MyBind
+    private val binding by lazy {
+        ActivityServiceBinding.inflate(this.layoutInflater)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_service)
-        bt_start_intent_service.setOnClickListener {
+        setContentView(binding.root)
+        binding.btStartIntentService.setOnClickListener {
             //启动SimpleIntentService服务
             val i = SimpleIntentService.newIntent(this)
             this.startService(i)
         }
-        bt_start_service.setOnClickListener {
+        binding.btBindService.setOnClickListener {
             SimpleService.startService(this)
         }
-        bt_stop_service.setOnClickListener {
+        binding.btStopService.setOnClickListener {
             SimpleService.stopService(this)
         }
-        bt_bind_service.setOnClickListener {
-            SimpleBindService.bindService(this,this)
+        binding.btBindService.setOnClickListener {
+            SimpleBindService.bindService(this, this)
         }
-        bt_unbind_service.setOnClickListener {
-            SimpleBindService.unbindService(this,this)
+        binding.btUnbindService.setOnClickListener {
+            SimpleBindService.unbindService(this, this)
         }
-        bt_start_front_service.setOnClickListener {
+        binding.btStartFrontService.setOnClickListener {
             SimpleFrontService.startService(this)
         }
-        bt_stop_front_service.setOnClickListener {
+        binding.btStopFrontService.setOnClickListener {
             SimpleFrontService.stopService(this)
         }
     }
-    companion object{
-        private val TAG:String = "ServiceActivity"
-        fun actionStart(activity:Activity){
-            val intent = Intent(activity,ServiceActivity::class.java)
+
+    companion object {
+        private val TAG: String = "ServiceActivity"
+        fun actionStart(activity: Activity) {
+            val intent = Intent(activity, ServiceActivity::class.java)
             activity.startActivity(intent)
         }
     }
